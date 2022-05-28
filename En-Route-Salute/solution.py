@@ -15,9 +15,9 @@ Write a function solution(s) which takes a string representing employees walking
 
 
 __author__ = "Eloi Giacobbo"
-__email__ = "eloi.filho@electrolux.com"
+__email__ = "eloiluiz@gmail.com"
 __version__ = "1.0.0"
-__status__ = "Released"
+__status__ = "Production"
 
 
 def solution(s):

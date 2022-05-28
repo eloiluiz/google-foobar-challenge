@@ -10,9 +10,9 @@ Help the Commander assign these IDs by writing a function solution(n) which take
 
 
 __author__ = "Eloi Giacobbo"
-__email__ = "eloi.filho@electrolux.com"
+__email__ = "eloiluiz@gmail.com"
 __version__ = "1.0.0"
-__status__ = "Released"
+__status__ = "Production"
 
 
 class solution:
