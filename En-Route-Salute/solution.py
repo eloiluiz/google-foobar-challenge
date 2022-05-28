@@ -16,7 +16,7 @@ Write a function solution(s) which takes a string representing employees walking
 
 __author__ = "Eloi Giacobbo"
 __email__ = "eloiluiz@gmail.com"
-__version__ = "1.0.1"
+__version__ = "1.0.2"
 __status__ = "Production"
 
 
@@ -36,7 +36,7 @@ def solution(s):
     if (DEBUG == True):
         print("Hall: " + s)
 
-    # Check for an empty string
+    # Check for a valid string size
     if ((hall_length <= 0) or (hall_length > 100)):
         return salute_number
 

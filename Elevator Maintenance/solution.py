@@ -13,31 +13,141 @@ For example, given the list l as ["1.1.2", "1.0", "1.3.3", "1.0.12", "1.0.2"], t
 
 __author__ = "Eloi Giacobbo"
 __email__ = "eloiluiz@gmail.com"
-__version__ = "1.0.0"
+__version__ = "0.1.0"
 __status__ = "Development "
+
+# Enable the debug options
+DEBUG = True
 
 
 def solution(l):
-    # Your code here
+    """Sorts the input list of version numbers.
+    """
+    import re
+
+    sorted_list = list()
+    pattern = "^\d+(\.\d+)*$"
+
+    # Check if the input object is a list
+    if (not isinstance(l, list)):
+        if (DEBUG == True):
+            print("Not a list")
+        return sorted_list
+
+    # Check for a valid list size
+    if ((len(l) <= 0) or (len(l) > 100)):
+        if (DEBUG == True):
+            print("Invalid length")
+        return sorted_list
+
+    # Check if the content are only strings
+    if (not all(isinstance(s, str) for s in l)):
+        if (DEBUG == True):
+            print("Invalid data type")
+        return sorted_list
+
+    # Check if the string is compliant with the defined pattern
+    if (not all(re.match(pattern, s) for s in l)):
+        if (DEBUG == True):
+            print("Invalid string pattern")
+        return sorted_list
+
+    # Then, start the sorting process
 
 
 def test():
     """ Application test function
     """
-    # input = "\0"
-    # print("Input: " + input)
-    # print("Output: " + str(solution(input)))
-    # print("============================================")
+    input = "\0"
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
 
-    # input = ""
-    # print("Input: " + input)
-    # print("Output: " + str(solution(input)))
-    # print("============================================")
+    input = 1
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
 
-    # input = "a"
-    # print("Input: " + input)
-    # print("Output: " + str(solution(input)))
-    # print("============================================")
+    input = []
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1"])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                 "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1"]
+                 )
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                 "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1", "1", "1", "1", "1", "1", "1", "1", "1", "1",
+                  "1"]
+                 )
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list([1])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", 1])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list([""])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", "1.0", "1.0.0"])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1,", "1.0", "1.0.0"])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", ".0", "1.0.0"])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["1", "1.0", "1.0."])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
+
+    input = list(["a", "1.0", "1.0.0"])
+    print("Input: " + str(input))
+    print("Output: " + str(solution(input)))
+    print("============================================")
 
     # input = ">----<"
     # print("Input: " + input)
