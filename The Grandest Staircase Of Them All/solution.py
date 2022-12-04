@@ -41,7 +41,7 @@ Write a function called solution(n) that takes a positive integer n and returns 
 
 __author__ = "Eloi Giacobbo"
 __email__ = "eloiluiz@gmail.com"
-__version__ = "1.1.0"
+__version__ = "1.2.0"
 __status__ = "Production"
 
 # Configuration Parameters
@@ -75,6 +75,8 @@ class Agent:
     """Intelligent agent base class.
     """
 
+    from sets import Set
+
     def __init__(self, start_position=[], goal_value=0, search_all=True):
         """Initializes the agent attributes.
         """
@@ -82,7 +84,8 @@ class Agent:
         self._start_position = start_position
         self._goal = goal_value
         self._goal_number = 0
-        self._visited = list()
+        self._visited = set()
+        self._frontier = set()
         self._search_all = search_all
 
     def get_neighbors(self, node):
@@ -96,9 +99,6 @@ class Agent:
         steps_number = len(node.position)
         if (steps_number < 2):
             return []
-
-        # Get the possible neighbor positions
-        neighbors = list()
 
         # Get neighboring positions
         for base_index in range(0, steps_number):
@@ -114,7 +114,9 @@ class Agent:
                     candidate_position.append(1)
 
                     neighbor_node = AgentSearchNode(position=candidate_position)
-                    neighbors.append(neighbor_node)
+
+                    if (neighbor_node not in self._visited):
+                        self._frontier.add(neighbor_node)
 
             # Otherwise, check where we can put new bricks
             else:
@@ -137,7 +139,9 @@ class Agent:
                             candidate_position.append(1)
 
                             neighbor_node = AgentSearchNode(position=candidate_position)
-                            neighbors.append(neighbor_node)
+
+                            if (neighbor_node not in self._visited):
+                                self._frontier.add(neighbor_node)
 
                     else:    
                         
@@ -152,10 +156,9 @@ class Agent:
 
                             # if (candidate_rank == self._goal):
                             neighbor_node = AgentSearchNode(position=candidate_position)
-                            neighbors.append(neighbor_node)
 
-        # Return the neighbors
-        return neighbors
+                            if (neighbor_node not in self._visited):
+                                self._frontier.add(neighbor_node)
 
     def is_position_new(self, node):
         """Verifies if the agent is using new coordinate values.
@@ -172,10 +175,8 @@ class Agent:
             return False
 
         # Check if the node position is new
-        for i in range(len(self._visited)):
-
-            if (self._visited[i] == node):
-                return False
+        if (node in self._visited):
+            return False
 
         return True
 
@@ -217,6 +218,14 @@ class AgentSearchNode:
         self.rank = rank
         self.position = position
         self.key = ''.join([str(x) + "," for x in position])
+
+    def __hash__(self):
+        """Returns the hash value of current node instance.
+
+        Returns:
+            str: The hash value as string.
+        """
+        return hash(self.key)
 
     def __eq__(self, other):
         """Compare two nodes using the key attribute as reference.
@@ -335,7 +344,7 @@ class DFS_Search(Agent):
         """
 
         # Update the visited positions list
-        self._visited.append(node)
+        self._visited.add(node)
 
         # Print current movement step
         if (PRINT_DEBUG == True):
@@ -344,14 +353,18 @@ class DFS_Search(Agent):
             input("PRESS ANY KEY TO CONTINUE...")
 
         # Search on the neighboring positions
-        neighbors = self.get_neighbors(node)
+        self.get_neighbors(node)
         
-        for neighbor in neighbors:
-        
-            # Check if the position is new, move and continue the search
-            if (self.is_position_new(neighbor) == True):
-                
-                self.move(neighbor)
+        while (len(self._frontier) > 0):
+
+            neighbor = self._frontier.pop()
+
+            # Update the visited positions list
+            self._visited.add(neighbor)
+
+            # Search on the neighboring positions
+            self.get_neighbors(neighbor)
+
 
 # **************************************************************
 #                          Test Routine
@@ -472,19 +485,5 @@ def test():
 
 # Application entry point
 if __name__ == "__main__":
-    # solution(9)
-
-    test()
-
-    # from datetime import datetime
-
-    # for i in range(10):
-        
-    #     start_time = datetime.now()
-
-    #     value = solution(i)
-
-    #     stop_time = datetime.now()
-    #     elapsed_time = (stop_time - start_time) 
-
-    #     print("(" + str(i) + ", " + str(value) + ", " + str(elapsed_time) + ")")
+    print solution(101)
+    # test()
