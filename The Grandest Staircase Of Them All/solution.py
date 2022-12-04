@@ -41,7 +41,7 @@ Write a function called solution(n) that takes a positive integer n and returns 
 
 __author__ = "Eloi Giacobbo"
 __email__ = "eloiluiz@gmail.com"
-__version__ = "1.0.0"
+__version__ = "1.1.0"
 __status__ = "Production"
 
 # Configuration Parameters
@@ -61,8 +61,11 @@ def solution(n):
     if ((n < 3) or (n > 200)):
         return 0
 
-    agent = DFS_Search(start_position=[2, 1], goal_value=n)
-    return agent.get_goal_number()
+    # Start solving the problem using the most simple staircase design
+    start_position = [n - 1, 1]
+
+    agent = DFS_Search(start_position, goal_value=n)
+    return agent.get_visited_number()
 
 
 # **************************************************************
@@ -89,44 +92,67 @@ class Agent:
             node (AgentSearchNode): current node used in the search process.
         """
 
-        # print("node.position_length", len(node.position))
-
         # Parse the input parameters
-        if (len(node.position) < 2):
+        steps_number = len(node.position)
+        if (steps_number < 2):
             return []
 
         # Get the possible neighbor positions
         neighbors = list()
-        
+
         # Get neighboring positions
-        for index in range(0, len(node.position) + 1):
+        for base_index in range(0, steps_number):
 
-            # print("index", index)
+            # In case we are removing a brick from the last step
+            if (base_index == (steps_number - 1)):
 
-            candidate_position = []
+                # Check if we can create a new step position
+                if (node.position[base_index] > 2):
 
-            if (index == 0):
-                candidate_position = node.position[:]
-                candidate_position[index] += 1
-
-            elif (index == len(node.position)):
-                if (node.position[index - 1] > 1):
                     candidate_position = node.position[:]
+                    candidate_position[base_index] -= 1
                     candidate_position.append(1)
 
-            elif ((node.position[index - 1] - node.position[index]) > 1):
-                candidate_position = node.position[:]
-                candidate_position[index] += 1
+                    neighbor_node = AgentSearchNode(position=candidate_position)
+                    neighbors.append(neighbor_node)
 
-            # print("candidate_position", candidate_position)
+            # Otherwise, check where we can put new bricks
+            else:
 
-            candidate_rank = sum(candidate_position)
+                # Check if we can remove a brick from the base position
+                height_difference = node.position[base_index] - node.position[base_index + 1]
+                
+                if (height_difference <= 1):
+                        continue
 
-            # print("rank", rank)
+                for target_index in range(base_index + 1, steps_number + 1):
+                    
+                    # Check if we can create a new step position
+                    if (target_index == steps_number):
 
-            if (candidate_rank > 3) and (candidate_rank <= self._goal):
-                neighbor_node = AgentSearchNode(candidate_rank, candidate_position)
-                neighbors.append(neighbor_node)
+                        if (node.position[target_index - 1] >= 2):
+
+                            candidate_position = node.position[:]
+                            candidate_position[base_index] -= 1
+                            candidate_position.append(1)
+
+                            neighbor_node = AgentSearchNode(position=candidate_position)
+                            neighbors.append(neighbor_node)
+
+                    else:    
+                        
+                        # Check if we can put a brick at the target position
+                        height_difference = node.position[target_index - 1] - node.position[target_index]
+                    
+                        if ((height_difference > 2) or ((target_index > (base_index + 1)) and (height_difference > 1))):
+
+                            candidate_position = node.position[:]
+                            candidate_position[base_index] -= 1
+                            candidate_position[target_index] += 1
+
+                            # if (candidate_rank == self._goal):
+                            neighbor_node = AgentSearchNode(position=candidate_position)
+                            neighbors.append(neighbor_node)
 
         # Return the neighbors
         return neighbors
@@ -171,6 +197,14 @@ class Agent:
             int: The number of goal positions.
         """
         return self._goal_number
+
+    def get_visited_number(self):
+        """Return the agent number of goal positions found.
+
+        Returns:
+            int: The number of goal positions.
+        """
+        return len(self._visited)
 
 
 class AgentSearchNode:
@@ -306,16 +340,8 @@ class DFS_Search(Agent):
         # Print current movement step
         if (PRINT_DEBUG == True):
             print("Current coordinate = ", node.position)
-            print("Current visited = ", self._visited)
-            raw_input("PRESS ANY KEY TO CONTINUE...")
-
-        # Test for goal position
-        # If True, increment the path number and return
-        if (self.is_search_goal(node)):
-            self._goal_number += 1
-            return True
-
-        # If the current position isn't the goal,
+            print("Current visited number = ", len(self._visited))
+            input("PRESS ANY KEY TO CONTINUE...")
 
         # Search on the neighboring positions
         neighbors = self.get_neighbors(node)
@@ -325,14 +351,7 @@ class DFS_Search(Agent):
             # Check if the position is new, move and continue the search
             if (self.is_position_new(neighbor) == True):
                 
-                is_goal_found = self.move(neighbor)
-
-                # Check the search stop condition and return True if the goal is found
-                if ((self._search_all == False) and (is_goal_found == True)):
-                    return True
-
-        # If none of its neighbors is the goal, return false
-        return False
+                self.move(neighbor)
 
 # **************************************************************
 #                          Test Routine
@@ -340,6 +359,8 @@ class DFS_Search(Agent):
 def test():
     """ Application test function
     """
+
+    from datetime import datetime
 
     pass_results = 0
     fail_results = 0
@@ -355,14 +376,56 @@ def test():
         [-1,  0],
         [0,   0],
         [1,   0],
+        [2,   0],
         [201, 0],
 
-        [3,   1],
-        [4,   1],
-        [5,   2],
-        [6,   3],
-        [7,   4],
-        [8,   5],
+        [3,  1],
+        [4,  1],
+        [5,  2],
+        [6,  3],
+        [7,  4],
+        [8,  5],
+        [9,  7],
+        [10, 9],
+        [11, 11],
+        [12, 14],
+        [13, 17],
+        [14, 21],
+        [15, 26],
+        [16, 31],
+        [17, 37],
+        [18, 45],
+        [19, 53],
+        [20, 63],
+        [21, 75],
+        [22, 88],
+        [23, 103],
+        [24, 121],
+        [25, 141],
+        [26, 164],
+        [27, 191],
+        [28, 221],
+        [29, 255],
+        [30, 295],
+        [31, 339],
+        [32, 389],
+        [33, 447],
+        [34, 511],
+        [35, 584],
+        [36, 667],
+        [37, 759],
+        [38, 863],
+        [39, 981],
+        [40, 1112],
+        [41, 1259],
+        [42, 1425],
+        [43, 1609],
+        [44, 1815],
+        [45, 2047],
+        [46, 2303],
+        [47, 2589],
+        [48, 2909],
+        [49, 3263],
 
         # [
         #     200,       # Input
@@ -374,22 +437,32 @@ def test():
     for test in test_cases:
 
         # Print the input array
-        print("Input:")
-        print("\t" + str(test[0]))
+        print("Input:\t   " + str(test[0]))
 
+        # Measure the solution time
+        start_time = datetime.now()
+        
         # Run the solution
         result = solution(test[0])
 
+        # Measure the solution time
+        elapsed_time = (datetime.now() - start_time) 
+
         # Print the output array
-        print("Output:\n" + str(result))
+        print("Output:\t   " + str(result))
 
         # Print the test result
         if (result == test[1]):
             pass_results += 1
-            print(u"Test: \033[1;32m PASSED\u001b[0m")
+            print(u"Test:     \033[1;32m PASSED\u001b[0m")
         else:
             fail_results += 1
-            print(u"Test: \u001b[31mFAILED\u001b[0m")
+            print("Expected:  " + str(test[1]))
+            print(u"Test:      \u001b[31mFAILED\u001b[0m")
+
+        # Print the solution time
+        print("Test time: " + str(elapsed_time))
+
         print("============================================")
 
     # Print the test summary
@@ -399,11 +472,13 @@ def test():
 
 # Application entry point
 if __name__ == "__main__":
+    # solution(9)
+
     test()
 
     # from datetime import datetime
 
-    # for i in range(201):
+    # for i in range(10):
         
     #     start_time = datetime.now()
 
