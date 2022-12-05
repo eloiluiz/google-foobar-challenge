@@ -1,32 +1,32 @@
 Input:     
 Output:    0
 Test:      PASSED
-Test time: 0:00:00.000006
+Test time: 0:00:00.000123
 ============================================
 Input:     
 Output:    0
 Test:      PASSED
-Test time: 0:00:00.000001
+Test time: 0:00:00.000011
 ============================================
 Input:     a
 Output:    0
 Test:      PASSED
-Test time: 0:00:00
+Test time: 0:00:00.000004
 ============================================
 Input:     -1
 Output:    0
 Test:      PASSED
-Test time: 0:00:00
+Test time: 0:00:00.000002
 ============================================
 Input:     0
 Output:    0
 Test:      PASSED
-Test time: 0:00:00.000001
+Test time: 0:00:00.000002
 ============================================
 Input:     1
 Output:    0
 Test:      PASSED
-Test time: 0:00:00.000001
+Test time: 0:00:00.000002
 ============================================
 Input:     2
 Output:    0
@@ -36,241 +36,246 @@ Test time: 0:00:00.000002
 Input:     201
 Output:    0
 Test:      PASSED
-Test time: 0:00:00.000001
+Test time: 0:00:00.000005
 ============================================
 Input:     3
 Output:    1
 Test:      PASSED
-Test time: 0:00:00.000015
+Test time: 0:00:00.000036
 ============================================
 Input:     4
 Output:    1
 Test:      PASSED
-Test time: 0:00:00.000012
+Test time: 0:00:00.000023
 ============================================
 Input:     5
 Output:    2
 Test:      PASSED
-Test time: 0:00:00.000016
+Test time: 0:00:00.000024
 ============================================
 Input:     6
 Output:    3
 Test:      PASSED
-Test time: 0:00:00.000018
+Test time: 0:00:00.000021
 ============================================
 Input:     7
 Output:    4
 Test:      PASSED
-Test time: 0:00:00.000019
+Test time: 0:00:00.000024
 ============================================
 Input:     8
 Output:    5
 Test:      PASSED
-Test time: 0:00:00.000025
+Test time: 0:00:00.000258
 ============================================
 Input:     9
 Output:    7
 Test:      PASSED
-Test time: 0:00:00.000031
+Test time: 0:00:00.000032
 ============================================
 Input:     10
 Output:    9
 Test:      PASSED
-Test time: 0:00:00.000031
+Test time: 0:00:00.000033
 ============================================
 Input:     11
 Output:    11
 Test:      PASSED
-Test time: 0:00:00.000044
+Test time: 0:00:00.000042
 ============================================
 Input:     12
 Output:    14
 Test:      PASSED
-Test time: 0:00:00.000062
+Test time: 0:00:00.000045
 ============================================
 Input:     13
 Output:    17
 Test:      PASSED
-Test time: 0:00:00.000173
+Test time: 0:00:00.000046
 ============================================
 Input:     14
 Output:    21
 Test:      PASSED
-Test time: 0:00:00.000141
+Test time: 0:00:00.000052
 ============================================
 Input:     15
 Output:    26
 Test:      PASSED
-Test time: 0:00:00.000159
+Test time: 0:00:00.000365
 ============================================
 Input:     16
 Output:    31
 Test:      PASSED
-Test time: 0:00:00.000219
+Test time: 0:00:00.000187
 ============================================
 Input:     17
 Output:    37
 Test:      PASSED
-Test time: 0:00:00.000289
+Test time: 0:00:00.000100
 ============================================
 Input:     18
 Output:    45
 Test:      PASSED
-Test time: 0:00:00.000636
+Test time: 0:00:00.000094
 ============================================
 Input:     19
 Output:    53
 Test:      PASSED
-Test time: 0:00:00.001748
+Test time: 0:00:00.000186
 ============================================
 Input:     20
 Output:    63
 Test:      PASSED
-Test time: 0:00:00.004003
+Test time: 0:00:00.000173
 ============================================
 Input:     21
 Output:    75
 Test:      PASSED
-Test time: 0:00:00.001650
+Test time: 0:00:00.000311
 ============================================
 Input:     22
 Output:    88
 Test:      PASSED
-Test time: 0:00:00.001670
+Test time: 0:00:00.000147
 ============================================
 Input:     23
 Output:    103
 Test:      PASSED
-Test time: 0:00:00.001966
+Test time: 0:00:00.000151
 ============================================
 Input:     24
 Output:    121
 Test:      PASSED
-Test time: 0:00:00.002718
+Test time: 0:00:00.000146
 ============================================
 Input:     25
 Output:    141
 Test:      PASSED
-Test time: 0:00:00.005941
+Test time: 0:00:00.000190
 ============================================
 Input:     26
 Output:    164
 Test:      PASSED
-Test time: 0:00:00.004992
+Test time: 0:00:00.000185
 ============================================
 Input:     27
 Output:    191
 Test:      PASSED
-Test time: 0:00:00.007134
+Test time: 0:00:00.000203
 ============================================
 Input:     28
 Output:    221
 Test:      PASSED
-Test time: 0:00:00.009519
+Test time: 0:00:00.000200
 ============================================
 Input:     29
 Output:    255
 Test:      PASSED
-Test time: 0:00:00.012310
+Test time: 0:00:00.000596
 ============================================
 Input:     30
 Output:    295
 Test:      PASSED
-Test time: 0:00:00.017191
+Test time: 0:00:00.000354
 ============================================
 Input:     31
 Output:    339
 Test:      PASSED
-Test time: 0:00:00.023131
+Test time: 0:00:00.000405
 ============================================
 Input:     32
 Output:    389
 Test:      PASSED
-Test time: 0:00:00.034899
+Test time: 0:00:00.000642
 ============================================
 Input:     33
 Output:    447
 Test:      PASSED
-Test time: 0:00:00.041028
+Test time: 0:00:00.000601
 ============================================
 Input:     34
 Output:    511
 Test:      PASSED
-Test time: 0:00:00.054361
+Test time: 0:00:00.000265
 ============================================
 Input:     35
 Output:    584
 Test:      PASSED
-Test time: 0:00:00.069250
+Test time: 0:00:00.000335
 ============================================
 Input:     36
 Output:    667
 Test:      PASSED
-Test time: 0:00:00.087628
+Test time: 0:00:00.000355
 ============================================
 Input:     37
 Output:    759
 Test:      PASSED
-Test time: 0:00:00.115265
+Test time: 0:00:00.000325
 ============================================
 Input:     38
 Output:    863
 Test:      PASSED
-Test time: 0:00:00.156528
+Test time: 0:00:00.000336
 ============================================
 Input:     39
 Output:    981
 Test:      PASSED
-Test time: 0:00:00.194349
+Test time: 0:00:00.000444
 ============================================
 Input:     40
 Output:    1112
 Test:      PASSED
-Test time: 0:00:00.250919
+Test time: 0:00:00.000447
 ============================================
 Input:     41
 Output:    1259
 Test:      PASSED
-Test time: 0:00:00.335984
+Test time: 0:00:00.000428
 ============================================
 Input:     42
 Output:    1425
 Test:      PASSED
-Test time: 0:00:00.444054
+Test time: 0:00:00.000466
 ============================================
 Input:     43
 Output:    1609
 Test:      PASSED
-Test time: 0:00:00.574152
+Test time: 0:00:00.000398
 ============================================
 Input:     44
 Output:    1815
 Test:      PASSED
-Test time: 0:00:00.818127
+Test time: 0:00:00.000419
 ============================================
 Input:     45
 Output:    2047
 Test:      PASSED
-Test time: 0:00:01.095304
+Test time: 0:00:00.000487
 ============================================
 Input:     46
 Output:    2303
 Test:      PASSED
-Test time: 0:00:01.339637
+Test time: 0:00:00.000504
 ============================================
 Input:     47
 Output:    2589
 Test:      PASSED
-Test time: 0:00:01.681444
+Test time: 0:00:00.000472
 ============================================
 Input:     48
 Output:    2909
 Test:      PASSED
-Test time: 0:00:02.169858
+Test time: 0:00:00.000515
 ============================================
 Input:     49
 Output:    3263
 Test:      PASSED
-Test time: 0:00:02.750459
+Test time: 0:00:00.000539
 ============================================
-Test Results: 55 PASSED and 0 FAILED.
+Input:     200
+Output:    487067745
+Test:      PASSED
+Test time: 0:00:00.013394
+============================================
+Test Results: 56 PASSED and 0 FAILED.

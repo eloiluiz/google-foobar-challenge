@@ -38,10 +38,9 @@ But when N = 5, there are two ways you can build a staircase from the given bric
 Write a function called solution(n) that takes a positive integer n and returns the number of different staircases that can be built from exactly n bricks. n will always be at least 3 (so you can have a staircase at all), but no more than 200, because Commander Lambda's not made of money!
 """
 
-
 __author__ = "Eloi Giacobbo"
 __email__ = "eloiluiz@gmail.com"
-__version__ = "1.2.0"
+__version__ = "1.3.0"
 __status__ = "Production"
 
 # Configuration Parameters
@@ -67,6 +66,27 @@ def solution(n):
     agent = DFS_Search(start_position, goal_value=n)
     return agent.get_visited_number()
 
+
+def solution2(n):
+    """ Receives the number of available bricks and calculate the number of different staircases that can be built.
+    """
+
+    # First, check the input parameter
+    if (isinstance(n, int) == False):
+        return 0
+
+    if ((n < 3) or (n > 200)):
+        return 0
+
+    m = [[0 for i in range(n + 1)] for j in range(n + 1)]
+    m[0][0] = 1  # base case
+    for stair in range(1, n + 1):
+        for left in range(0, n + 1):
+            m[stair][left] = m[stair - 1][left]
+            if left >= stair:
+                m[stair][left] += m[stair - 1][left - stair]
+	          	
+    return m[n][n] - 1
 
 # **************************************************************
 #                          Agent Class
@@ -440,10 +460,10 @@ def test():
         [48, 2909],
         [49, 3263],
 
-        # [
-        #     200,       # Input
-        #     487067745, # Expected result   
-        # ],
+        [
+            200,       # Input
+            487067745, # Expected result   
+        ],
     ]
 
     # Run every test case
@@ -456,7 +476,7 @@ def test():
         start_time = datetime.now()
         
         # Run the solution
-        result = solution(test[0])
+        result = solution2(test[0])
 
         # Measure the solution time
         elapsed_time = (datetime.now() - start_time) 
@@ -482,8 +502,6 @@ def test():
     print(u"Test Results: \033[1;32m" + str(pass_results) +
           u" PASSED\u001b[0m and \u001b[31m" + str(fail_results) + u" FAILED\u001b[0m.")
 
-
 # Application entry point
 if __name__ == "__main__":
-    print solution(101)
-    # test()
+    test()
